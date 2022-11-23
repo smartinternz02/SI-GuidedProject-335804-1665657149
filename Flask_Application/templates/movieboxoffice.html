@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>MOVIE BOX OFFICE GROSS PREDICTION</title>
+    <style>
+    body{
+    opacity : 0.75;
+    text-align: center;
+    font-family: Verdana, Tahoma, sans-serif;
+    font-size: larger;
+    background-image: url('https://i.postimg.cc/6q9K4Hrm/filmpicture.jpg');
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+}
+ h1,p {
+  animation-duration: 3s;
+  animation-name: slidein;
+}
+
+@keyframes slidein {
+  from {
+    margin-left: 100%;
+    width: 300%;
+  }
+
+  to {
+    margin-left: 0%;
+    width: 100%;
+  }
+}
+form{
+    padding: 10px;
+}
+td{
+    padding: 6px;
+}
+input[type=number]{
+
+    padding: 8px 0px;
+    margin: 8px 0;
+    border: 2px solid #ccc;
+    border-radius: 6px;
+  }
+#btn{
+    background-color: #52abf3;
+    width: 100%;
+    border: 10px;
+    border-radius: 7px;
+    color: white;
+    padding: 15px 32px;
+    font-size: 16px;
+    cursor: pointer;
+}
+#btn:hover{
+    background-color:#008bf9;
+}
+table{
+    border-radius: 5px;
+    background-color: #f2f2f2;
+    padding: 20px;
+}
+
+
+
+#prediction {
+color: white ;
+}
+
+input[type=text],select,button{
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  box-sizing: border-box;
+  border: 2px solid red;
+  border-radius: 4px;
+}
+
+</style>
+</head>
+<body>
+    <!-- <div class="box"> -->
+    <h1 style="background-color:powderblue;">MOVIE BOX OFFICE GROSS PREDICTION</h1>
+    <!-- </div> -->
+
+    <!-- <div class="box"> -->
+    <center>
+    <form action="{{ url_for('y_predict')}}" method="post">
+        <table>
+            <tr>
+
+                <td>
+                    <label for="budget">Budget</label>
+                </td>
+                <td>:</td>
+                <td>
+                    <input type="text" id="budget" name="budget" placeholder="Budget in $ Million" required="required"/>
+                </td>
+        </tr>
+        <tr>
+                <td>
+                    <label for="genres">Genres</label>
+                </td>
+                <td>:</td>
+                <td>
+                    <select  id="genres" name="genres" >
+                    <option>Select the genres</option>
+                    <option value="6">Drama</option>
+                    <option value="3">Comedy</option>
+                    <option value="0">Action</option>
+                    <option value="1">Adventure</option>
+                    <option value="10">Horror</option>
+                    <option value="4">Crime</option>
+                    <option value="16">Thriller</option>
+                    <option value="2">Animation</option>
+                    <option value="8">Fantasy</option>
+                    <option value="14">Science Fiction</option>
+                    <option value="13">Romance</option>
+                    <option value="7">Family</option>
+                    <option value="12">Mystery</option>
+                    <option value="5">Documentary</option>
+                    <option value="18">Western</option>
+                    <option value="17">War</option>
+                    <option value="9">History</option>
+                    <option value="15">TV Movie</option>
+                    <option value="11">Music</option></select>
+                </td>
+        </tr>
+        <tr>
+            <td>
+                <label for="Enter popularity">Enter popularity</label>
+            </td>
+            <td>:</td>
+            <td>
+                <input type="text" id="Enter popularity" name="Enter popularity" placeholder="Enter the popularity" required="required" />
+            </td>
+        </tr>
+
+        <tr>
+            <td>
+                <label for="Enter runtime ">Enter runtime  </label>
+            </td>
+            <td>:</td>
+            <td>
+                <input type="text" id="Enter runtime " name="Enter runtime " placeholder="Enter runtime" required="required"/>
+            </td>
+        </tr>
+
+        <tr>
+            <td>
+                <label for="Enter vote_average">Enter vote_average</label>
+            </td>
+            <td>:</td>
+            <td>
+                <input type="text" id="Enter vote_average" name="Enter vote_average" placeholder="Enter vote_average" required="required"/>
+            </td>
+        </tr>
+
+        <tr>
+            <td>
+                <label for="Enter vote_count">Enter vote_count </label>
+            </td>
+            <td>:</td>
+            <td>
+                <input type="text" id="Enter vote_count" name="Enter vote_count" placeholder="Enter vote_count" required="required"/>
+            </td>
+        </tr>
+
+        <tr>
+            <td>
+                <label for="director">Director </label>
+            </td>
+            <td>:</td>
+            <td>
+             <select  id="director" name="director" >
+                     <option>Select the director</option>
+                     <option value="2108">Steven Spielberg</option>
+                     <option value="2323">Woody Allen</option>
+                     <option value="1431">Martin Scorsese</option>
+                     <option value="377">Clint Eastwood</option>
+                     <option value="1851">Ridley Scott</option>
+                     <option value="1894">Robert Rodriguez</option>
+                     <option value="2051">Spike Lee</option>
+                     <option value="2107">Steven Soderbergh</option>
+                     <option value="1810">Renny Harlin</option>
+                     <option value="2169">Tim Burton</option>
+                     <option value="1654">Oliver Stone</option>
+                     <option value="1904">Robert Zemeckis</option>
+                     <option value="1930">Ron Howard</option>
+                     <option value="1034">Joel Schumacher</option>
+                     <option value="156">Barry Levinson</option>
+                     <option value="1480">Michael Bay</option>
+                     <option value="2234">Tony Scott</option>
+                     <option value="245">Brian De Palma</option>
+                     <option value="667">Francis Ford Coppola</option>
+                     <option value="1256">Kevin Smith</option>
+                     <option value="1973">Sam Raimi</option>
+                     <option value="2025">Shawn Levy</option>
+                     <option value="1823">Richard Donner</option>
+                     <option value="320">Chris Columbus</option></select><br>
+            </td>
+        </tr>
+
+        <tr>
+            <td>
+                <label for="Enter the month of release">Enter the month of release</label>
+            </td>
+            <td>:</td>
+            <td>
+                <input type="text" id="Enter the month of release" name="Enter the month of release" placeholder="Enter the month of release " required="required" />
+            </td>
+        </tr>
+
+        <tr>
+            <td>
+                <label for="Enter the week of the month">Enter the week of the month</label>
+            </td>
+            <td>:</td>
+            <td>
+                <input type="text" id="Enter the week of the month" name="Enter the week of the month" placeholder="Enter the week of the month " min="0" />
+            </td>
+        </tr>
+
+        <tr>
+            <td colspan="3">
+                <input id="btn" type="submit" value="Predict" >
+            </td>
+        </tr>
+        </table>
+        <p id="prediction"> {{prediction_text}}</p>
+    </form>
+    </center>
+<!-- </div> -->
+</body>
+</html>>
